@@ -18,7 +18,8 @@ layout: default
                 {% endif %}
             {% endfor %}
          {% else %}
-            {% assign thumbnail =  site.IMG_PATH | append: '/avatar.jpg' %}
+            {% assign cate = post.title | split:'-' | first %}
+            {% assign thumbnail = site.IMG_PATH | append: '/in-post/' |  append: cate | append: '/thumb.png' %}
          {% endif %}
     {% endif %}
 
