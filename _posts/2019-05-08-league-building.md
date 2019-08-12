@@ -1,6 +1,7 @@
 ---
 layout: post 
 title: "傍晚的滨江"
+thumb: /img/in-post/binjiang-hangzhou/thumb.png
 category: life
 tags:  "滨江 夕阳"
 ---
