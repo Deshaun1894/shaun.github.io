@@ -19,6 +19,7 @@ cmder是一款模仿linux的windows工具，很好用，可以按照这个链接
 # ssh基本命令
 用ssh命令行连接linux服务器主要是以下命令
 >ssh username@host    
+
 输入此命令后再输入密码就可以了，因此脚本的思路也是这样实现，最主要的难点是，如何在windows环境下读取命令行当前的状态，即是否在等待输入密码，对于这个问题，博主尝试了很多办法，比如类似于linux的expect，python脚本等，都无法实现，总会有这样那样的问题，最后是参考[leoluo同学的vbs脚本](http://www.sixleoluo.me/computer/tech/325/)实现的
 
 linux服务器环境如下(用的是centos虚拟机):
