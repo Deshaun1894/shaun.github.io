@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // var disq = new iDisqus('comment', {
   //   forum: site.forum,
   //   site: site.home,
-  //   api: site.api + '/disqus',
+  //   api: 'https://api.fooleap.org' + '/disqus',
   //   title: page.title,
   //   url: page.url,
   //   mode: 2,
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   //   init: true,
   //   toggle: 'comment-toggle',
   //   sort: 'newest',
-  //   emoji_path: site.api + '/emoji/unicode/',
+  //   emoji_path: 'https://api.fooleap.org' + '/emoji/unicode/',
   // });
 
   // disq.count();
