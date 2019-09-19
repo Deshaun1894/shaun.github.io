@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "数据库与xml文件导入导出"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/java/thumb.png
 category: tech
 tags:  "java xml database"
 ---

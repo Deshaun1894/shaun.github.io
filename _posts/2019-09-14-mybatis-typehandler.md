@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "mybatis数据结果类型处理"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/java/thumb.png
 category: tech
 tags:  "java mybatis typehandler"
 ---
