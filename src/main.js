@@ -141,7 +141,7 @@ if (browser.wechat && location.origin == site.home) {
       });
     }
   }
-  xhrwesign.open('GET', site.api + '/wechat/jssdk.php?url=' + location.href, true);
+  xhrwesign.open('GET', 'https://api.fooleap.org/wechat/jssdk.php?url=' + location.href, true);
   xhrwesign.send();
   wx.ready(function () {
   });
