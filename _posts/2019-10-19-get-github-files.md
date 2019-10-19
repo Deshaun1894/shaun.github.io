@@ -1,6 +1,6 @@
 ---
 layout: post 
-title: "解决从github上git clone缓慢的went"
+title: "解决从github上git clone缓慢的问题"
 thumb: /img/in-post/wiki/thumb.jpg
 category: wiki
 tags:  "github git"
