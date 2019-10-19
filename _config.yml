@@ -21,10 +21,10 @@ kramdown:
 # emoji:
 #     src: 'https://api.fooleap.org'
 paginate: 10
-repository: znfang/znfang.gitee.io
+repository: znfang/znfang.github.io
 
 nickname: znfang
-home: https://znfang.gitee.io
+home: https://znfang.github.io
 # api: https://api.fooleap.org
 # IMG_PATH: //source.fooleap.org
 IMG_PATH: /img
