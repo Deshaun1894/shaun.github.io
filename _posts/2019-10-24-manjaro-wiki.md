@@ -60,3 +60,16 @@ sudo ln -s /usr/share/applications/electron-ssr.desktop /etc/xdg/autostart/
     - auto switch中删除所有的switch rules，在rule list config中填写gfwlist中的过滤地址，download profile now按钮，下载过滤地址，格式选择AutoProxy
     - 在Switch rules中将规则列表中使用proxy模式，其他使用直接模式，保存应用即可。     
     - electron-ssr中直接根据ssr免费地址中的信息填写即可。
+
+# wechat/微信
+安装
+```
+yaourt -S deepin-wine-wechat
+```
+
+# TIM/QQ
+安装
+```
+yaourt -S deepin-wine-tim #安装tim
+yaourt -S deepin.wine.qq.office #安装qq
+```
