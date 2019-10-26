@@ -5,6 +5,7 @@ _site*
 .DS_Store
 Thumbs.db
 *npm*
+*-lock.json
 *.lock
 *.log
 _drafts/
