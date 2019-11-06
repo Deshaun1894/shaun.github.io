@@ -278,8 +278,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
       image.src[i] = imageArr[i].dataset.src;
       //new RegExp(site.img,'i').test(imageArr[i].src) ? imageArr[i].src.split(/_|\?/)[0] : imageArr[i].src;
     }
+    image.jpg = [];
     image.jpg = image.src.filter(function (item) {
-      return item.indexOf('.jpg') > -1 && new RegExp(site.img, 'i').test(item);
+      if(typeof(item) != "undefined"){
+        return item.indexOf('.jpg') > -1 && new RegExp(site.img, 'i').test(item);
+      }
     });
     [].forEach.call(imageArr, function (item, i) {
       image.title[i] = item.title || item.parentElement.textContent.trim() || item.alt;
@@ -290,18 +293,20 @@ document.addEventListener('DOMContentLoaded', function (event) {
       if (new RegExp(site.img, 'i').test(image.src[i])) {
         imgdom.insertAdjacentHTML('afterend', '<figcaption class="post-figcaption">&#9650; ' + image.title[i] + '</figcaption>');
       }
-
-      imgdom.addEventListener('click', function () {
-        if (browser.wechat && browser.mobile) {
-          wx.previewImage({
-            current: image.src[i],
-            urls: image.src
-          });
-        } else {
-          window.open(image.src[i]);
-        }
-      })
+      if(typeof(image.src[i]) != "undefined"){
+        imgdom.addEventListener('click', function () {
+          if (browser.wechat && browser.mobile) {
+            wx.previewImage({
+              current: image.src[i],
+              urls: image.src
+            });
+          } else {
+            window.open(image.src[i]);
+          }
+        })
+      }
     })
+    
 
     var getExif = function (index) {
       if (index < image.jpg.length) {

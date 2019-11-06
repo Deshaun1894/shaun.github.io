@@ -21,4 +21,4 @@ tags:  "github git"
 - git remote -v  #查看远程分支情况
 - git remote rm [name]  #删除已经存在的远程地址，此处应该是gitee地址
 - git remote add [name] [url]  #添加新的远程地址，此处应该是github的地址，https和ssh均可
-- git pull #拉取新的远程地址代码
+- git pull [name] master #拉取新的远程地址代码,name是本地添加的，master是远程分支，视情况更改

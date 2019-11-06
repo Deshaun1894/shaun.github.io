@@ -73,3 +73,79 @@ yaourt -S deepin-wine-wechat
 yaourt -S deepin-wine-tim #安装tim
 yaourt -S deepin.wine.qq.office #安装qq
 ```
+
+# NodeJS
+## 安装NodeJS
+```
+pacman -Ss nodejs-lts   //查看nodejs长期支持版
+sudo pacman -S nodejs-lts-dubnium   //选择其中一个版本进行安装
+npm -v  //查看安装成功没有，如果没有成功执行下条命令
+sudo pacman -S npm
+```
+
+## 配置npm
+```
+npm config list //查看npm配置
+npm config set prefix "{global_dir}"    //设置全局npm安装路径
+npm config set cache ""     //设置全局缓存路径
+npm config set registry https://registry.npm.taobao.org     //设置淘宝镜像源
+```
+以上的set改成get可以查看配置的参数
+
+如果需要在bash或者zsh执行npm安装的组件，需要添加把刚刚的全局安装路径下的bin目录添加到环境变量
+```
+vim ~/.zshrc  //bash就是.bashrc
+export PATH="{global_dir}/bin:$PATH"    //添加到环境变量
+source ~/.zshrc
+```
+
+## vue初始化
+```
+npm install -g vue-cli  //vue手脚架
+vue init webpack my-project //使用webpack模板初始化
+cd my-project
+npm install //安装依赖的组件
+npm run dev //运行项目，用浏览器打开http://localhost:8080
+```
+
+# beyond compare
+## 下载
+- [beyond compare下载地址](https://www.scootersoftware.com/download.php?zz=kb_linux_install)
+
+## 安装
+```
+tar -zxvf bcompare-4.3.1.24438.x86_64.tar.gz
+cd bcompare-4.3.1.24438
+./install.sh    //根据提示输入安装路径{install_dir}
+```
+## 破解
+```
+cd {install_dir}/lib64/beyondcompare
+```
+输入以下命令
+```
+sudo sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" BCompare
+```
+打开beyond compare会提示Trail Mode Error，此时选择Entry key，并输入以下内容
+```
+--- BEGIN LICENSE KEY ---
+GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
+--- END LICENSE KEY -----
+```
+## 设置桌面应用
+```
+sudo cp {install_dir}/lib64/beyondcompare/help/bclogo.png /usr/share/icons/
+sudo vim /usr/share/applications/bcompare.desktop
+```
+输入以下内容
+```
+[Desktop Entry]
+Name=beyond-compare
+Comment=beyond compare
+Exec=/home/znan/Userware/bcompare/bin/bcompare %U
+Terminal=false
+Type=Application
+Icon=bclogo
+Categories=Office;
+MimeType=
+```
