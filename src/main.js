@@ -278,7 +278,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
       image.src[i] = imageArr[i].dataset.src;
       //new RegExp(site.img,'i').test(imageArr[i].src) ? imageArr[i].src.split(/_|\?/)[0] : imageArr[i].src;
     }
+    image.jpg = [];
     image.jpg = image.src.filter(function (item) {
+      if(typeof(item) !== 'undefined')
       return item.indexOf('.jpg') > -1 && new RegExp(site.img, 'i').test(item);
     });
     [].forEach.call(imageArr, function (item, i) {
@@ -290,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       if (new RegExp(site.img, 'i').test(image.src[i])) {
         imgdom.insertAdjacentHTML('afterend', '<figcaption class="post-figcaption">&#9650; ' + image.title[i] + '</figcaption>');
       }
+      if(image.jpg.length != 0){
       imgdom.addEventListener('click', function () {
         if (browser.wechat && browser.mobile) {
           wx.previewImage({
@@ -300,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
           window.open(image.src[i]);
         }
       })
+    }
     })
     
 
