@@ -260,130 +260,125 @@ document.addEventListener('DOMContentLoaded', function (event) {
   noteArr = noteArr.sort(function (a, b) {
     return +(a.num > b.num) || +(a.num === b.num) - 1;
   })
-  // console.log(document.getElementById("refs"))
-  for (var i = 0; i < noteArr.length; i++){
-    if(document.getElementById("refs") != null){
-      document.getElementById('refs').insertAdjacentHTML('beforeend', '<li id="note-' + noteArr[i].num + '" class="note"><a href="#ref-' + noteArr[i].num + '">^</a> <a href="' + noteArr[i].href + '" title="' + noteArr[i].title + '" class="exf-text" target="_blank">' + noteArr[i].title + '</a></li>');
-    }
+  for (var i = 0; i < noteArr.length; i++) {
+    if(document.getElementById("refs") != null)
+    document.getElementById('refs').insertAdjacentHTML('beforeend', '<li id="note-' + noteArr[i].num + '" class="note"><a href="#ref-' + noteArr[i].num + '">^</a> <a href="' + noteArr[i].href + '" title="' + noteArr[i].title + '" class="exf-text" target="_blank">' + noteArr[i].title + '</a></li>');
   }
 
   if (page.layout == 'post') {
+    // 处理服务期图片的，如果是自己搭建的服务器，下面取消注释
     // var imageArr = document.querySelectorAll('.post-content img[data-src]:not([class="emoji"])')
-    var imageArr = document.querySelectorAll('.post-content')
-    var image = {
-      src: [],
-      thumb: [],
-      title: [],
-      coord: []
-    };
-    for (var i = 0; i < imageArr.length; i++) {
-      image.thumb[i] = imageArr[i].src;
-      image.src[i] = imageArr[i].dataset.src;
-      //new RegExp(site.img,'i').test(imageArr[i].src) ? imageArr[i].src.split(/_|\?/)[0] : imageArr[i].src;
-    }
-    image.jpg = [];
-    image.jpg = image.src.filter(function (item) {
-      if(typeof(item) !== 'undefined')
-      return item.indexOf('.jpg') > -1 && new RegExp(site.img, 'i').test(item);
-    });
-    [].forEach.call(imageArr, function (item, i) {
-      image.title[i] = item.title || item.parentElement.textContent.trim() || item.alt;
-      item.title = image.title[i];
-      item.classList.add('post-image');
-      item.parentElement.outerHTML = item.parentElement.outerHTML.replace('<p>', '<figure class="post-figure" data-index=' + i + '>').replace('</p>', '</figure>').replace(item.parentElement.textContent, '');
-      var imgdom = document.querySelector('.post-image[data-src="' + image.src[i] + '"]');;
-      if (new RegExp(site.img, 'i').test(image.src[i])) {
-        imgdom.insertAdjacentHTML('afterend', '<figcaption class="post-figcaption">&#9650; ' + image.title[i] + '</figcaption>');
-      }
-      if(image.jpg.length != 0){
-      imgdom.addEventListener('click', function () {
-        if (browser.wechat && browser.mobile) {
-          wx.previewImage({
-            current: image.src[i],
-            urls: image.src
-          });
-        } else {
-          window.open(image.src[i]);
-        }
-      })
-    }
-    })
+    // var imageArr = document.querySelectorAll('.post-content')
+    // var image = {
+    //   src: [],
+    //   thumb: [],
+    //   title: [],
+    //   coord: []
+    // };
+    // for (var i = 0; i < imageArr.length; i++) {
+    //   image.thumb[i] = imageArr[i].src;
+    //   image.src[i] = imageArr[i].dataset.src;
+    //   //new RegExp(site.img,'i').test(imageArr[i].src) ? imageArr[i].src.split(/_|\?/)[0] : imageArr[i].src;
+    // }
+    // image.jpg = image.src.filter(function (item) {
+    //   return item.indexOf('.jpg') > -1 && new RegExp(site.img, 'i').test(item);
+    // });
+    // [].forEach.call(imageArr, function (item, i) {
+    //   image.title[i] = item.title || item.parentElement.textContent.trim() || item.alt;
+    //   item.title = image.title[i];
+    //   item.classList.add('post-image');
+    //   item.parentElement.outerHTML = item.parentElement.outerHTML.replace('<p>', '<figure class="post-figure" data-index=' + i + '>').replace('</p>', '</figure>').replace(item.parentElement.textContent, '');
+    //   var imgdom = document.querySelector('.post-image[data-src="' + image.src[i] + '"]');;
+    //   if (new RegExp(site.img, 'i').test(image.src[i])) {
+    //     imgdom.insertAdjacentHTML('afterend', '<figcaption class="post-figcaption">&#9650; ' + image.title[i] + '</figcaption>');
+    //   }
+    //   imgdom.addEventListener('click', function () {
+    //     if (browser.wechat && browser.mobile) {
+    //       wx.previewImage({
+    //         current: image.src[i],
+    //         urls: image.src
+    //       });
+    //     } else {
+    //       window.open(image.src[i]);
+    //     }
+    //   })
+    // })
     
 
-    var getExif = function (index) {
-      if (index < image.jpg.length) {
-        var item = image.jpg[index];
-        var xhrExif = new XMLHttpRequest();
-        xhrExif.open('GET', item + '?exif', true);
-        xhrExif.onreadystatechange = function () {
-          if (this.readyState == 4) {
-            if (this.status == 200) {
-              var data = JSON.parse(this.responseText);
-              var parseVal = function (odata) {
-                if (!!odata) {
-                  return odata.val;
-                } else {
-                  return '无';
-                }
-              }
-              if (!!data.DateTimeOriginal) {
-                var datetime = data.DateTimeOriginal.val.split(/\:|\s/);
-                var date = datetime[0] + '-' + datetime[1] + '-' + datetime[2] + ' ' + datetime[3] + ':' + datetime[4];
-                var make = parseVal(data.Make);
-                var model = parseVal(data.Model);
-                var fnum = parseVal(data.FNumber);
-                var extime = parseVal(data.ExposureTime);
-                var iso = parseVal(data.ISOSpeedRatings);
-                var flength = parseVal(data.FocalLength);
-                document.querySelector('.post-image[data-src="' + item + '"]').closest('.post-figure').dataset.exif = '时间: ' + date + ' 器材: ' + (model.indexOf(make) > -1 ? '' : make) + ' ' + model + ' 光圈: ' + fnum + ' 快门: ' + extime + ' 感光度: ' + iso + ' 焦距: ' + flength;
-              }
-              if (!!data.GPSLongitude) {
-                var olat = data.GPSLatitude.val.split(', ');
-                var olng = data.GPSLongitude.val.split(', ');
-                var lat = 0, lng = 0;
-                for (var e = 0; e < olat.length; e++) {
-                  lat += olat[e] / Math.pow(60, e);
-                  lng += olng[e] / Math.pow(60, e);
-                }
-                lat = data.GPSLatitudeRef && data.GPSLatitudeRef.val == 'S' ? -lat : lat;
-                lng = data.GPSLongitudeRef && data.GPSLongitudeRef.val == 'W' ? -lng : lng;
-                image.coord[index] = coordtransform.wgs84togcj02(lng, lat).join(',');
-              }
-            }
-            index++;
-            getExif(index);
-          }
-        }
-        xhrExif.send();
-      } else {
-        var xhrRegeo = new XMLHttpRequest();
-        xhrRegeo.open('GET', '//restapi.amap.com/v3/geocode/regeo?key=890ae1502f6ab57aaa7d73d32f2c8cc1&batch=true&location=' + image.coord.filter(function () { return true }).join('|'), true);
-        xhrRegeo.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            if (data.info == 'OK') {
-              var address, city, dist, town;
-              for (var m = 0, n = 0; m < image.jpg.length; m++) {
-                address = data.regeocodes[n];
-                if (m in image.coord && !!address) {
-                  address = address.addressComponent;
-                  city = address.city || '';
-                  dist = address.district || '';
-                  town = address.township || '';
-                  document.querySelector('[data-src="' + image.jpg[m] + '"]').title = '摄于' + city + dist + town;
-                  n++;
-                }
-              }
-            }
-          }
-        }
-        xhrRegeo.send();
-      }
-    }
+    // var getExif = function (index) {
+    //   if (index < image.jpg.length) {
+    //     var item = image.jpg[index];
+    //     var xhrExif = new XMLHttpRequest();
+    //     xhrExif.open('GET', item + '?exif', true);
+    //     xhrExif.onreadystatechange = function () {
+    //       if (this.readyState == 4) {
+    //         if (this.status == 200) {
+    //           var data = JSON.parse(this.responseText);
+    //           var parseVal = function (odata) {
+    //             if (!!odata) {
+    //               return odata.val;
+    //             } else {
+    //               return '无';
+    //             }
+    //           }
+    //           if (!!data.DateTimeOriginal) {
+    //             var datetime = data.DateTimeOriginal.val.split(/\:|\s/);
+    //             var date = datetime[0] + '-' + datetime[1] + '-' + datetime[2] + ' ' + datetime[3] + ':' + datetime[4];
+    //             var make = parseVal(data.Make);
+    //             var model = parseVal(data.Model);
+    //             var fnum = parseVal(data.FNumber);
+    //             var extime = parseVal(data.ExposureTime);
+    //             var iso = parseVal(data.ISOSpeedRatings);
+    //             var flength = parseVal(data.FocalLength);
+    //             document.querySelector('.post-image[data-src="' + item + '"]').closest('.post-figure').dataset.exif = '时间: ' + date + ' 器材: ' + (model.indexOf(make) > -1 ? '' : make) + ' ' + model + ' 光圈: ' + fnum + ' 快门: ' + extime + ' 感光度: ' + iso + ' 焦距: ' + flength;
+    //           }
+    //           if (!!data.GPSLongitude) {
+    //             var olat = data.GPSLatitude.val.split(', ');
+    //             var olng = data.GPSLongitude.val.split(', ');
+    //             var lat = 0, lng = 0;
+    //             for (var e = 0; e < olat.length; e++) {
+    //               lat += olat[e] / Math.pow(60, e);
+    //               lng += olng[e] / Math.pow(60, e);
+    //             }
+    //             lat = data.GPSLatitudeRef && data.GPSLatitudeRef.val == 'S' ? -lat : lat;
+    //             lng = data.GPSLongitudeRef && data.GPSLongitudeRef.val == 'W' ? -lng : lng;
+    //             image.coord[index] = coordtransform.wgs84togcj02(lng, lat).join(',');
+    //           }
+    //         }
+    //         index++;
+    //         getExif(index);
+    //       }
+    //     }
+    //     xhrExif.send();
+    //   } else {
+    //     var xhrRegeo = new XMLHttpRequest();
+    //     xhrRegeo.open('GET', '//restapi.amap.com/v3/geocode/regeo?key=890ae1502f6ab57aaa7d73d32f2c8cc1&batch=true&location=' + image.coord.filter(function () { return true }).join('|'), true);
+    //     xhrRegeo.onreadystatechange = function () {
+    //       if (this.readyState == 4 && this.status == 200) {
+    //         var data = JSON.parse(this.responseText);
+    //         if (data.info == 'OK') {
+    //           var address, city, dist, town;
+    //           for (var m = 0, n = 0; m < image.jpg.length; m++) {
+    //             address = data.regeocodes[n];
+    //             if (m in image.coord && !!address) {
+    //               address = address.addressComponent;
+    //               city = address.city || '';
+    //               dist = address.district || '';
+    //               town = address.township || '';
+    //               document.querySelector('[data-src="' + image.jpg[m] + '"]').title = '摄于' + city + dist + town;
+    //               n++;
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //     xhrRegeo.send();
+    //   }
+    // }
 
-    if (image.jpg.length > 0) {
-      getExif(0);
-    }
+    // if (image.jpg.length > 0) {
+    //   getExif(0);
+    // }
 
     // 流程图
     var flowArr = document.getElementsByClassName('language-flow');
