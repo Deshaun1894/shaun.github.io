@@ -33,7 +33,8 @@ cmder用ssh连linux服务器操作如图:
 
 # 具体实现
 根据上面的连接过程，脚本主要代码如下:
->set ws = createobject("wscript.shell")    
+```
+set ws = createobject("wscript.shell")    
 ws.run "cmder.exe"    
 wscript.sleep 800    
 ws.SendKeys "+"    
@@ -42,6 +43,7 @@ ws.SendKeys "{enter}"
 wscript.sleep 800    
 ws.SendKeys "root"     
 ws.SendKeys "{enter}"    
+```
 
 vbs有一个很诡异的地方，就是sendkey操作，默认是跟随系统语言设定输入法的，所以需要在输入命令前切换为英文输入法，即
 >ws.SendKeys "+"

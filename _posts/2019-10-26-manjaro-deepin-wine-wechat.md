@@ -13,25 +13,25 @@ tags:  "wechat qq xdotool linux wiki"
 xdotool是一款模拟键盘操作的软件，因此可以使用xdotool来模拟键盘，完成快捷键的转发
 
 # 操作过程
-- 安装xdotool，本文提供manjaro的安装方式，其他linux系统请自行搜索
+## 安装xdotool
+本文提供manjaro的安装方式如下，其他linux系统请自行搜索
 ```
 sudo pacman -S xdotool
 ```
-- 测试微信和tim的模拟状态
+## 测试微信和tim的模拟状态
 ```
-#后面三个组合键要看自己的tim提取消息的快捷键是啥，注意微信和QQ的搜索形式不同
 xdotool key --window $(xdotool search --name 'tim' | head -n1) ctrl+alt+x
 xdotool key --window $(xdotool search --limit 1 --all --pid $(pgrep WeChat.exe)) ctrl+alt+w
 ```
-
+后面三个组合键要看自己的tim提取消息的快捷键是啥，注意微信和QQ的搜索形式不同    
 正常情况下，如果QQ和微信的快捷键对的话，就可以打开QQ或者微信的消息框了    
-- 编写脚本并赋权    
+## 编写脚本并赋权    
 在自己的目录下编写.sh的脚本，博主分别在自己个人目录下创建了wechat.sh和tim.sh文件，分别将上述的命令写入，可以直接./wechat.sh执行，如果权限不够，使用下面命令行提权
 ```
 sudo chmod 777 wechat.sh
 ```
 然后再执行，正确的话，就可以进行快捷键绑定了
-- 绑定快捷键
+## 绑定快捷键
 file finder-->keyboard-->shortcuts-->add-->选择刚刚的脚本-->save-->输入快捷键（可自定义）
 
 # 说明
