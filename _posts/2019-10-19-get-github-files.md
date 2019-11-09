@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "解决github下载缓慢"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/thumbs/wiki.png
 category: wiki
 tags:  "github git"
 ---

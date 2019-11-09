@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "windows-ssh运行脚本"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/thumbs/win.png
 category: wiki
 tags:  "ssh vbs windows"
 ---

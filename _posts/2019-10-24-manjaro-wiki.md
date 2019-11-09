@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "manjaro操作系统知识库"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/thumbs/linux.png
 category: wiki
 tags:  "manjaro linux wiki"
 ---

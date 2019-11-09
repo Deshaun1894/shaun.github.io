@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "jekyll搭建github个人博客"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/thumbs/wiki.png
 category: wiki
 tags:  "blog"
 ---

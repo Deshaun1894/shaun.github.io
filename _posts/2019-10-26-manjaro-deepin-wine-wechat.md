@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "linux的QQ/微信使用快捷键"
-thumb: /img/in-post/wiki/thumb.jpg
+thumb: /img/in-post/thumbs/wiki.png
 category: wiki
 tags:  "wechat qq xdotool linux wiki"
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post 
 title: "cpp-显式类型转换"
-thumb: /img/in-post/cpp/thumb.png
+thumb: /img/in-post/thumbs/cpp.png
 category: tech
 tags:  "cpp 显式类型转换"
 ---
