@@ -260,8 +260,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
   noteArr = noteArr.sort(function (a, b) {
     return +(a.num > b.num) || +(a.num === b.num) - 1;
   })
-  for (var i = 0; i < noteArr.length; i++) {
-    document.getElementById('refs').insertAdjacentHTML('beforeend', '<li id="note-' + noteArr[i].num + '" class="note"><a href="#ref-' + noteArr[i].num + '">^</a> <a href="' + noteArr[i].href + '" title="' + noteArr[i].title + '" class="exf-text" target="_blank">' + noteArr[i].title + '</a></li>');
+  // console.log(document.getElementById("refs"))
+  for (var i = 0; i < noteArr.length; i++){
+    if(document.getElementById("refs") != null){
+      document.getElementById('refs').insertAdjacentHTML('beforeend', '<li id="note-' + noteArr[i].num + '" class="note"><a href="#ref-' + noteArr[i].num + '">^</a> <a href="' + noteArr[i].href + '" title="' + noteArr[i].title + '" class="exf-text" target="_blank">' + noteArr[i].title + '</a></li>');
+    }
   }
 
   if (page.layout == 'post') {
