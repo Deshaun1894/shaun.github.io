@@ -2,9 +2,9 @@ encoding: utf-8
 port: 5678
 host: 0.0.0.0
 
-title: znan
-keywords: [znfang, 后端, 算法, 杭州]
-description: '到底要做一个什么样的人？'
+title: Deshaun
+keywords: [放飞自我，学习]
+description: '还是要看清自己'
 
 exclude: [webpack.config.js, package.json, Gemfile, Gemfile.lock, src, node_modules]
 # plugins: [jekyll-paginate, jemoji]
@@ -23,8 +23,8 @@ kramdown:
 paginate: 10
 repository: i-znan/i-znan.github.io
 
-nickname: znan
-home: https://i-znan.github.io
+nickname: Deshaun
+home: https://shaun.github.io
 # api: https://api.fooleap.org
 # IMG_PATH: //source.fooleap.org
 IMG_PATH: /img
@@ -32,4 +32,4 @@ tongji: '9bb4bf149fca98f317e75329260f7961'
 analytics: 'UA-139257940-1'
 
 # Comments  disqus needs vpn
-disqus_username: znfang
+disqus_username: Deshaun
